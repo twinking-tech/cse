@@ -4,11 +4,10 @@ body {
     color: #333;
     font-family: 'Arial', sans-serif;
 }
-h1{
+h1 {
     text-shadow: 0px 4px 6px rgba(255, 255, 255, 1);
-} 
-h4 
-{
+}
+h4 {
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
 }
 .card {
@@ -18,18 +17,15 @@ h4
     padding: 10px;
     text-align: center;
 }
-
 .card img {
     width: 50px;
     height: 50px;
 }
-
 .card p {
     margin-top: 10px;
     font-size: 1.1rem;
     font-weight: bold;
 }
-
 .card-body {
     background: none;
 }
@@ -58,7 +54,6 @@ button.btn-outline-danger {
     padding: 10px;
     font-size: 20px;
 }
-
 #addToWishlist {
     padding: 8px 15px;
     border-radius: 5px;
@@ -68,7 +63,6 @@ button.btn-outline-danger {
 #wishlist h3 {
     color: #7f7fd5;
 }
-
 #wishlistList {
     background-color: #ffffff;
     padding: 10px;
@@ -82,32 +76,29 @@ button.btn-outline-danger {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .info-container {
     text-align: center;
-    font-size: 1.5rem; /* Larger text for better emphasis */
-    font-weight: bold; /* Bold text for clarity */
-    color: #444; /* Slightly darker color for contrast */
-    text-transform: capitalize; /* Ensure proper capitalization */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #444;
+    text-transform: capitalize;
 }
-
 .row {
     margin-top: 20px;
     display: flex;
     gap: 30px;
-    justify-content: center; /* Align horizontally at the center */
-    align-items: center; /* Align items vertically within their container */
+    justify-content: center;
+    align-items: center;
 }
-
 .box {
-    width: 20vw; /* Square dimensions */
+    width: 20vw;
     height: 30vh;
     background-color: #ffffff;
     text-align: center;
     display: flex;
-    flex-direction: column; /* Ensure text and content stack vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: rgb(0, 0, 0);
     font-size: 20px;
     border-radius: 8px;
@@ -120,19 +111,18 @@ button.btn-outline-danger {
         margin-top: 20px;
         display: flex;
         gap: 15px;
-        justify-content: center; /* Align horizontally at the center */
-        align-items: center; /* Align items vertically within their container */
+        justify-content: center;
+        align-items: center;
     }
-    
     .box {
-        width: 20vw; /* Square dimensions */
+        width: 20vw;
         height: 20vh;
         background-color: #ffffff;
         text-align: center;
         display: flex;
-        flex-direction: column; /* Ensure text and content stack vertically */
-        justify-content: center; /* Center content vertically */
-        align-items: center; /* Center content horizontally */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         color: rgb(0, 0, 0);
         font-size: 16px;
         border-radius: 8px;
@@ -140,25 +130,24 @@ button.btn-outline-danger {
         border: 1px solid #333;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     }
-  }
-  @media screen and (max-width: 600px) {
+}
+@media screen and (max-width: 600px) {
     .row {
         margin-top: 20px;
         display: flex;
         gap: 15px;
-        justify-content: center; /* Align horizontally at the center */
-        align-items: center; /* Align items vertically within their container */
+        justify-content: center;
+        align-items: center;
     }
-    
     .box {
-        width: 20vw; /* Square dimensions */
+        width: 20vw;
         height: 15vh;
         background-color: #ffffff;
         text-align: center;
         display: flex;
-        flex-direction: column; /* Ensure text and content stack vertically */
-        justify-content: center; /* Center content vertically */
-        align-items: center; /* Center content horizontally */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         color: rgb(0, 0, 0);
         font-size: 12px;
         border-radius: 8px;
@@ -166,11 +155,10 @@ button.btn-outline-danger {
         border: 1px solid #333;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     }
-  }
-  #wishlistList{
+}
+#wishlistList {
     background-color: #b57878;
-  }
-  
+}
 
 /* Search Bar */
 .search-bar {
@@ -180,7 +168,6 @@ button.btn-outline-danger {
     display: flex;
     gap: 10px;
 }
-
 .search-input {
     flex: 1;
     border: 2px solid #7f7fd5;
@@ -190,12 +177,10 @@ button.btn-outline-danger {
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 .search-input:focus {
     border-color: #86a8e7;
     box-shadow: 0px 4px 8px rgba(0, 91, 187, 0.3);
 }
-
 .search-button {
     background-color: #7f7fd5;
     border: none;
@@ -206,16 +191,13 @@ button.btn-outline-danger {
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 .search-button:hover {
     background-color: #86a8e7;
     box-shadow: 0px 4px 8px rgba(0, 91, 187, 0.3);
 }
-
 .search-button:focus {
     outline: none;
 }
-
 .search-button i {
     font-size: 18px;
 }
@@ -226,13 +208,11 @@ button.btn-outline-danger {
     background: none;
     cursor: pointer;
 }
-
 .wishlist-btn .wishlist-icon {
     font-size: 1.5rem;
     color: gray;
     transition: color 0.3s, transform 0.3s ease-in-out;
 }
-
 .wishlist-btn.clicked .wishlist-icon {
     color: red;
     transform: scale(1.2);
@@ -241,7 +221,7 @@ button.btn-outline-danger {
 /* Wishlist Dropdown Styles */
 .wishlist-dropdown {
     position: absolute;
-    top: 60px; /* Adjust based on navbar height */
+    top: 60px;
     right: 20px;
     background: #ffffff;
     border: 1px solid #ddd;
@@ -250,35 +230,31 @@ button.btn-outline-danger {
     z-index: 1000;
     padding: 10px;
     width: 200px;
-  }
-  
-  .wishlist-dropdown p {
+}
+.wishlist-dropdown p {
     text-align: center;
     color: #555;
     margin: 0;
-  }
-  
-  .wishlist-dropdown a {
+}
+.wishlist-dropdown a {
     display: block;
     padding: 8px 12px;
     text-decoration: none;
     color: #333;
     font-weight: bold;
     border-radius: 4px;
-  }
-  
-  .wishlist-dropdown a:hover {
+}
+.wishlist-dropdown a:hover {
     background-color: #f1f1f1;
-  }
-  .wishlist-weather-container {
+}
+.wishlist-weather-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 10px;
     margin: 20px 0;
-  }
-  
-  .city-weather-card {
+}
+.city-weather-card {
     background-color: #f7f7f7;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -286,21 +262,19 @@ button.btn-outline-danger {
     text-align: center;
     width: 150px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .city-weather-card h3 {
+}
+.city-weather-card h3 {
     margin: 5px 0;
     font-size: 1.2rem;
-  }
-  
-  .city-weather-card img {
+}
+.city-weather-card img {
     width: 50px;
     height: 50px;
-  }
-  .abc{
+}
+.abc {
     background: linear-gradient(to bottom right, #f7e8ff, #e3f8ff);
-  }
-  .city-item {
+}
+.city-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -309,20 +283,16 @@ button.btn-outline-danger {
     border-radius: 4px;
     margin-bottom: 8px;
     background-color: #f9f9f9;
-  }
-  
-  .city-item span {
+}
+.city-item span {
     font-size: 1rem;
     color: #333;
-  }
-  
-  .remove-icon {
+}
+.remove-icon {
     font-size: 1.2rem;
-    color: #ff4d4d; /* Trash icon color */
+    color: #ff4d4d;
     transition: color 0.3s ease;
-  }
-  
-  .remove-icon:hover {
-    color: #e63939; /* Darker red on hover */
-  }
-  
+}
+.remove-icon:hover {
+    color: #e63939;
+}
