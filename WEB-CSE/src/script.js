@@ -1,3 +1,4 @@
+//here all types and kind of constant i had defined
 const apiKey = "6dab4d0a58c5bd0e7cc08e08829a5f3b";
 const cityInput = document.getElementById('cityInput');
 const searchBtn = document.getElementById('searchBtn');
@@ -13,9 +14,9 @@ const loadingSpinner = document.getElementById('loadingSpinner');
 const wishlistBtn = document.getElementById('addToWishlist');
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || []; // Retrieve wishlist from localStorage
 
-const commonCities = ["Pune", "Patna", "Mumbai","Dhanbad","Delhi","Goa"]; // Default common cities
+const commonCities = ["Pune", "Patna", "Mumbai","Dhanbad","Delhi","Goa"]; // i choose some Default common cities of my choice for website
 
-// Render default weather for common cities
+// funaction for default weather for common cities
 async function renderCommonCitiesWeather() {
   const wishlistContainer = document.getElementById("wishlistWeather");
   wishlistContainer.innerHTML = ""; // Clear previous content
@@ -30,7 +31,7 @@ async function renderCommonCitiesWeather() {
 
       const data = await response.json();
 
-      // Create a card for each city weather
+      // Create a card kind of div for each city weather
       const cityCard = `
         <div class="city-weather-card">
           <h3>${city}</h3>
@@ -49,14 +50,14 @@ async function renderCommonCitiesWeather() {
 
 // Call function to load common cities weather when the page loads
 document.addEventListener("DOMContentLoaded", () => {
-  renderCommonCitiesWeather(); // Load default wishlist cities' weather
+  renderCommonCitiesWeather(); // common cities ka weasther fetch kr raha hai
   loadWishlistPage(); // Load user wishlist
 });
 
-// Keep the rest of your original code intact...
 
 
-// Event listener for search button
+
+// search button
 searchBtn.addEventListener('click', () => {
   const city = cityInput.value.trim();
   if (city) {
@@ -68,7 +69,7 @@ searchBtn.addEventListener('click', () => {
   }
 });
 
-// Function to show loading spinner
+// used ternary function for loading spinner
 const showLoading = (isLoading) => loadingSpinner.style.display = isLoading ? 'block' : 'none';
 
 // Function to update the background based on weather condition
@@ -106,7 +107,7 @@ async function getWeather(city) {
     updateWeatherUI(data);
   } catch (error) {
     alert(error.message);
-    showLoading(false); // Hide the loading spinner if there's an error
+    showLoading(false); // Hide the loading spinner 
   }
 }
 
@@ -122,7 +123,7 @@ function updateWeatherUI(data) {
   // Update the background based on the weather condition
   updateBackground(data.weather[0].main);
   
-  showLoading(false); // Hide the loading spinner after data is fetched
+  showLoading(false); 
 }
 
 // Fetch 5-day forecast data
@@ -135,13 +136,13 @@ async function getForecast(city) {
     updateForecastUI(data);
   } catch (error) {
     alert(error.message);
-    showLoading(false); // Hide the loading spinner if there's an error
+    showLoading(false); 
   }
 }
 
 // Update UI with 5-day forecast data
 function updateForecastUI(data) {
-  forecast.style.display = 'block';
+  forecast.style.display = 'block';//block means display
   forecastCards.innerHTML = ''; // Clear previous forecast cards
 
   const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
@@ -163,7 +164,7 @@ function updateForecastUI(data) {
     forecastCards.innerHTML += card;
   });
 }
-
+//making wishlist and storing it in locl storage so that it is not gone after website is again loded
 // Function to toggle city in wishlist
 function toggleWishlist(city) {
   const cityIndex = wishlist.indexOf(city);
@@ -198,8 +199,7 @@ function updateHeartIcon(city) {
   }
 }
 
-// Function to load and display wishlist
-// Function to load and display wishlist
+
 // Function to load and display wishlist
 function loadWishlistPage() {
     const wishlistCities = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -222,7 +222,7 @@ function loadWishlistPage() {
         const removeBtn = document.createElement('i');
         removeBtn.classList.add('bi', 'bi-trash', 'remove-icon');
         removeBtn.style.cursor = 'pointer'; // Change cursor to pointer
-        removeBtn.title = 'Remove'; // Tooltip when hovering
+        removeBtn.title = 'Remove'; 
         removeBtn.addEventListener('click', () => removeCityFromWishlist(index));
   
         // Append city name and remove icon to the div
