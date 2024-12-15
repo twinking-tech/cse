@@ -10,17 +10,27 @@
 <body>
   <!-- Navbar -->
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">Weather Dashboard</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <!-- Hamburger Toggle for Small Screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="index.html">Home</a></li> <!-- Home link -->
-        <li><a class="dropdown-item" href="wishlist">Wishlist</a></li>
-        <li><a class="dropdown-item" href="about.html">About</a></li> <!-- About link -->
-      </ul>
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#wishlist">Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
   
