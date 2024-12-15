@@ -13,6 +13,49 @@ const loadingSpinner = document.getElementById('loadingSpinner');
 const wishlistBtn = document.getElementById('addToWishlist');
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || []; // Retrieve wishlist from localStorage
 
+const commonCities = ["Pune", "Patna", "Mumbai","Dhanbad","Delhi","Goa"]; // Default common cities
+
+// Render default weather for common cities
+async function renderCommonCitiesWeather() {
+  const wishlistContainer = document.getElementById("wishlistWeather");
+  wishlistContainer.innerHTML = ""; // Clear previous content
+
+  for (const city of commonCities) {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+      );
+
+      if (!response.ok) throw new Error(`Weather data not available for ${city}`);
+
+      const data = await response.json();
+
+      // Create a card for each city weather
+      const cityCard = `
+        <div class="city-weather-card">
+          <h3>${city}</h3>
+          <p>${data.main.temp}°C - ${data.weather[0].description}</p>
+          <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weather Icon" />
+        </div>
+      `;
+
+      wishlistContainer.innerHTML += cityCard;
+    } catch (error) {
+      console.error(error.message);
+      wishlistContainer.innerHTML += `<div class="city-weather-card"><h3>${city}</h3><p>Weather unavailable</p></div>`;
+    }
+  }
+}
+
+// Call function to load common cities weather when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  renderCommonCitiesWeather(); // Load default wishlist cities' weather
+  loadWishlistPage(); // Load user wishlist
+});
+
+// Keep the rest of your original code intact...
+
+
 // Event listener for search button
 searchBtn.addEventListener('click', () => {
   const city = cityInput.value.trim();
@@ -156,23 +199,54 @@ function updateHeartIcon(city) {
 }
 
 // Function to load and display wishlist
+// Function to load and display wishlist
+// Function to load and display wishlist
 function loadWishlistPage() {
-  const wishlistCities = JSON.parse(localStorage.getItem('wishlist')) || [];
-  const wishlistContainer = document.getElementById('wishlistList');
-  wishlistContainer.innerHTML = ''; // Clear the wishlist container
-
-  if (wishlistCities.length === 0) {
-    wishlistContainer.innerHTML = '<p>No cities in your wishlist.</p>';
-  } else {
-    wishlistCities.forEach(city => {
-      const cityDiv = document.createElement('div');
-      cityDiv.classList.add('city-item');
-      cityDiv.textContent = city;
-      wishlistContainer.appendChild(cityDiv);
-    });
+    const wishlistCities = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistContainer = document.getElementById('wishlistList');
+    wishlistContainer.innerHTML = ''; // Clear the wishlist container
+  
+    if (wishlistCities.length === 0) {
+      wishlistContainer.innerHTML = '<p>No cities in your wishlist.</p>';
+    } else {
+      wishlistCities.forEach((city, index) => {
+        // Create a div for each city
+        const cityDiv = document.createElement('div');
+        cityDiv.classList.add('city-item');
+        
+        // Add city name
+        const cityName = document.createElement('span');
+        cityName.textContent = city;
+        
+        // Add remove icon
+        const removeBtn = document.createElement('i');
+        removeBtn.classList.add('bi', 'bi-trash', 'remove-icon');
+        removeBtn.style.cursor = 'pointer'; // Change cursor to pointer
+        removeBtn.title = 'Remove'; // Tooltip when hovering
+        removeBtn.addEventListener('click', () => removeCityFromWishlist(index));
+  
+        // Append city name and remove icon to the div
+        cityDiv.appendChild(cityName);
+        cityDiv.appendChild(removeBtn);
+        
+        // Append the div to the wishlist container
+        wishlistContainer.appendChild(cityDiv);
+      });
+    }
   }
-}
-
+  
+  // Function to remove a city from the wishlist
+  function removeCityFromWishlist(index) {
+    const wishlistCities = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const removedCity = wishlistCities.splice(index, 1); // Remove the city at the given index
+  
+    // Update the local storage and refresh the wishlist display
+    localStorage.setItem('wishlist', JSON.stringify(wishlistCities));
+    loadWishlistPage();
+  
+    alert(`${removedCity} has been removed from your wishlist.`);
+  }
+  
 // Ensure wishlist state is reflected correctly on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadWishlistPage();
@@ -193,4 +267,63 @@ wishlistBtn.addEventListener('click', () => {
   }
 });
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Load Wishlist and Initialize Menu
+    loadWishlistPage();
+  
+    const currentCity = cityName.textContent;
+    if (currentCity) {
+      updateHeartIcon(currentCity);
+    }
+  
+    // Add functionality to Wishlist link in the navbar
+    const wishlistMenuLink = document.querySelector('a[href="#wishlist"]');
+    wishlistMenuLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      showWishlistDropdown();
+    });
+  });
+  
+  // Function to show wishlist dropdown in the navbar
+  function showWishlistDropdown() {
+    const dropdown = document.createElement('div');
+    dropdown.classList.add('wishlist-dropdown');
+    const wishlistCities = JSON.parse(localStorage.getItem('wishlist')) || [];
+  
+    if (wishlistCities.length === 0) {
+      dropdown.innerHTML = '<p>No cities in your wishlist.</p>';
+    } else {
+      wishlistCities.forEach(city => {
+        const cityItem = document.createElement('a');
+        cityItem.href = '#';
+        cityItem.textContent = city;
+        cityItem.classList.add('wishlist-city');
+        cityItem.addEventListener('click', () => {
+          getWeather(city); // Fetch and display weather for the clicked city
+          getForecast(city); // Fetch and display the forecast as well
+        });
+        dropdown.appendChild(cityItem);
+      });
+    }
+  
+    // Ensure previous dropdowns are removed before adding a new one
+    removeExistingDropdown();
+    document.querySelector('.navbar').appendChild(dropdown);
+  }
+  
+  // Function to remove any existing wishlist dropdown
+  function removeExistingDropdown() {
+    const existingDropdown = document.querySelector('.wishlist-dropdown');
+    if (existingDropdown) {
+      existingDropdown.remove();
+    }
+  }
+  
+  // Ensure dropdown closes when clicking elsewhere
+  document.addEventListener('click', (event) => {
+    const dropdown = document.querySelector('.wishlist-dropdown');
+    if (dropdown && !event.target.closest('.wishlist-dropdown') && !event.target.closest('a[href="#wishlist"]')) {
+      dropdown.remove();
+    }
+  });
+  
